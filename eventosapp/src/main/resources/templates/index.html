@@ -4,28 +4,37 @@
 	  
 
 <head>
+	<title>EventosApp</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 </head>
 
 <body>
 	<h1>Lista de Eventos</h1>
-	<h3> <a href="/cadastrarEvento">Cadastrar um evento</a></h3>
-	
-	<div th:each="evento: ${eventos}">
-		<div class="row">
-			<p><span th:text="${evento.nome}"></span></p>
-			<p><span th:text="${evento.local}"></span></p>
-			<p><span th:text="${evento.data}"></span></p>
-			<p><span th:text="${evento.horario}"></span></p>
-		
-		</div>
+	<h3><a href="/cadastrarEvento" class="waves-effect waves-light btn"><i class="material-icons left">library_add</i>Cadastrar um evento</a></h3>
 	
 	
-	
-	
-	
-	</div>
-
+	<table>
+		<thead>
+			<tr>
+				<th>Nome</th>
+				<th>Local</th>
+				<th>Data</th>
+				<th>Horário</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="evento: ${eventos}">
+				<td><a th:href="${(#mvc.url('EC#detalhesEvento').arg(0, evento.codigo)).build()}"><span th:text="${evento.nome}"></span></a></td>
+				<td><a><span th:text="${evento.local}"></span></a></td>
+				<td><a><span th:text="${evento.data}"></span></a></td>
+				<td><a><span th:text="${evento.horario}"></span></a></td>
+			</tr>
+		</tbody>
+	</table>
+	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
 </body>
 
 </html>
