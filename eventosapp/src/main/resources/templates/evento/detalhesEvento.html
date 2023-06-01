@@ -12,22 +12,35 @@
 </head>
 
 <body>
-	<h1>Evento</h1>
-	<h3><a href="/eventos" class="waves-effect waves-light btn"><i class="material-icons left">library_add</i>Lista de Eventos</a></h3>
-	<div th:each="evento : ${evento}" class="container">
-		<div class="row">
-			<p><span th:text="${evento.nome}"></span><p>
-			<p><span th:text="${evento.local}"></span><p>
-			<p><span th:text="${evento.data}"></span><p>
-			<p><span th:text="${evento.horario}"></span><p>
-		</div>
+	<div class="container">
+		<h1>Evento</h1>
+		<h3><a href="/eventos" class="waves-effect waves-light btn"><i class="material-icons left">library_add</i>Lista de Eventos</a></h3>
+		<th:block th:insert="mensagemValidacao"/>
+		<div th:each="evento : ${evento}">
+			<div class="row">
+				<p><span th:text="${evento.nome}"></span><p>
+				<p><span th:text="${evento.local}"></span><p>
+				<p><span th:text="${evento.data}"></span><p>
+				<p><span th:text="${evento.horario}"></span><p>
+			</div>
+			
+			<form method="post">
+				Nome: <input type="text" value="" name="nomeConvidado"/>
+				RG: <input type="text" value="" name="rg"/>
+				<button class="waves-effect waves-light btn" type="submit">Adicionar</button>
+			</form>
 		
-		<form method="post">
-			Nome: <input type="text" value="" name="nomeConvidado"/>
-			RG: <input type="text" value="" name="rg"/>
-			<button class="waves-effect waves-light btn" type="submit">Adicionar</button>
-		</form>
-	
+			<div th:each="convidado : ${convidados}">
+				<div class="row">
+					<div class="input-field col s6">
+						<p><span th:text="${convidado.nomeConvidado}"></span></p>
+					</div>
+					<div class="input-field col s3">
+						<p><span th:text="${convidado.rg}"></span></p>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	
 	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
